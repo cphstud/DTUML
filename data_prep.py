@@ -30,18 +30,19 @@ attributeNames = np.asarray(df.columns[cols])
 classLabels = raw_data[:,4]
 # Then determine which classes are in the data by finding the set of 
 # unique class labels 
-classNames = np.unique(classLabels)
+classNames_Family = np.unique(classLabels)
+classNames_CHD = np.array(['CHD Absent', 'CHD Present'])
 # We can assign each type of Iris class with a number by making a
 # Python dictionary as so:
-classDict = dict(zip(classNames,range(len(classNames))))
-
+classDict_Family = dict(zip(classNames_Family,range(len(classNames_Family))))
+classDict_CHD = dict(zip(classNames_CHD,range(len(classNames_CHD))))
 #This is the class index vector y:
-y = np.array([classDict[cl] for cl in classLabels])
-
+y_family = np.array([classDict_Family[cl] for cl in classLabels])
+y_CHD = X[:,-1]
 # We can determine the number of data objects and number of attributes using 
 # the shape of X
 N, M = X.shape
 
 # Finally, the last variable that we need to have the dataset in the 
 # "standard representation" for the course, is the number of classes, C:
-C = len(classNames)
+C = len(classNames_CHD)
