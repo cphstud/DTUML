@@ -4,11 +4,6 @@ Created on Fri Mar  4 10:30:19 2022
 
 @author: s184361
 """
-
-# Imports the numpy and pandas package, then runs the data_prep code
-from data_prep import *
-# (requires data structures from ex. 2.1.1)
-
 #from matplotlib.pyplot import figure, plot, title, legend, xlabel, ylabel, show
 import matplotlib.pyplot as plt
 from scipy.linalg import svd
@@ -16,6 +11,12 @@ from matplotlib.pyplot import (figure, plot, title, legend, boxplot, xticks, sub
                                xlabel,ylabel, ylim, yticks, show)
 
 from scipy.stats import zscore
+
+# Imports the numpy and pandas package, then runs the data_prep code
+from data_prep import *
+# (requires data structures from ex. 2.1.1)
+
+
 # Data attributes to be plotted
 # %% Scatter plots
 '''
@@ -68,7 +69,7 @@ for i in range(M):
     xlabel(attributeNames[i])
     ylim(0, N) # Make the y-axes equal for improved readability
     if i%v!=0: yticks([])
-    if i==0: title('Wine: Histogram')
+    if i==0: title('CHD: Histogram')
     
 #%% Histograms of all attributes with potential outliers
 figure(figsize=(14,9))
@@ -79,7 +80,9 @@ for i in range(len(m)):
     xlabel(attributeNames_3[m[i]])
     ylim(0, N) # Make the y-axes equal for improved readability
     if i>0: yticks([])
-    if i==0: title('Wine: Histogram (selected attributes)') 
+    if i==0: title('CHD: Histogram (selected attributes)') 
+
+
 #%% PCA
 
 
