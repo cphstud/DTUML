@@ -39,6 +39,8 @@ classDict_CHD = dict(zip(classNames_CHD,range(len(classNames_CHD))))
 #This is the class index vector y:
 y_family = np.array([classDict_Family[cl] for cl in classLabels])
 y_CHD = X[:,-1]
+X2=X
+X2[:,4] = y_family
 # We can determine the number of data objects and number of attributes using 
 # the shape of X
 N, M = X.shape
