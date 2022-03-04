@@ -42,9 +42,10 @@ for i in range(0,len(attributeNames)-1):
 #%% Histograms
         
 #%% PCA
-        
+XX = np.delete(X, [4,9], 1)#only data for PCA
+XX=np.array(XX,dtype = np.float)
 # Subtract mean value from data
-Y = X - np.ones((N,1))*X.mean(axis=0)
+Y = XX - np.ones((N,1))*XX.mean(axis=0)
 
 # PCA by computing SVD of Y
 U,S,V = svd(Y,full_matrices=False)
@@ -65,3 +66,29 @@ plt.ylabel('Variance explained');
 plt.legend(['Individual','Cumulative','Threshold'])
 plt.grid()
 plt.show()
+
+#%% Plot PC
+
+V = V.T    
+
+# Project the centered data onto principal component space
+Z = Y @ V
+
+# Indices of the principal components to be plotted
+i = 0
+j = 1
+
+# Plot PCA of the data
+f = figure()
+title('South African Heart Disease: PCA')
+#Z = array(Z)
+for c in range(C):
+    # select indices belonging to class c:
+    class_mask = y_CHD==c
+    plot(Z[class_mask,i], Z[class_mask,j], 'o', alpha=.5)
+legend(classNames)
+xlabel('PC{0}'.format(i+1))
+ylabel('PC{0}'.format(j+1))
+
+# Output result to screen
+show()
